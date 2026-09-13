@@ -1,0 +1,27 @@
+{
+  "kind": "file_content",
+  "title": "Fichier Contenu",
+  "ports": {
+    "inputs": [],
+    "outputs": [
+      {
+        "id": 1,
+        "name": "contenu",
+        "title": "Contenu",
+        "emits": ["message/*", "text/plain", "application/json"],
+        "multiplicity": "many"
+      }
+    ]
+  },
+  "config": {
+    "path": "./input.txt",
+    "create_if_missing": false,
+    "encoding": "utf-8"
+  },
+  "runtime": {
+    "initial_state": "ready",
+    "active_worker": true,
+    "generic_source": true,
+    "file_source": true
+  }
+}
