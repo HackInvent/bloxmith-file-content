@@ -1,16 +1,16 @@
-.cw-file-inspector {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector {
   display: grid;
   gap: 12px;
 }
 
-.cw-file-inspector .file-path-control {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-path-control {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
 }
 
-.cw-file-inspector .file-browser-panel {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-panel {
   border: 1px solid var(--border-subtle, #d8e0ea);
   border-radius: 8px;
   display: grid;
@@ -18,25 +18,25 @@
   padding: 10px;
 }
 
-.cw-file-inspector .file-browser-panel.hidden {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-panel.hidden {
   display: none;
 }
 
-.cw-file-inspector .file-browser-toolbar,
-.cw-file-inspector .file-browser-roots {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-toolbar,
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-roots {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.cw-file-inspector .file-browser-list {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-list {
   display: grid;
   gap: 4px;
   max-height: 220px;
   overflow: auto;
 }
 
-.cw-file-inspector .file-browser-entry {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-entry {
   align-items: center;
   background: transparent;
   border: 1px solid transparent;
@@ -51,19 +51,19 @@
   text-align: left;
 }
 
-.cw-file-inspector .file-browser-entry:hover,
-.cw-file-inspector .file-browser-entry:focus-visible {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-entry:hover,
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-entry:focus-visible {
   background: var(--surface-muted, #eef3f8);
   border-color: var(--border-subtle, #d8e0ea);
 }
 
-.cw-file-inspector .file-browser-entry-name {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector .file-browser-entry-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.cw-file-inspector [data-file-apply]:disabled {
+[data-block-release="file_content@0.1.0"] .cw-file-inspector [data-file-apply]:disabled {
   cursor: not-allowed;
   opacity: 0.55;
   box-shadow: none;
