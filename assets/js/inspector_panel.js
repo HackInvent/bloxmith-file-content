@@ -52,7 +52,7 @@ function mountFileContentEditor(root, api, { actionName = "inspector_update_file
       api.log?.(successMessage);
     } catch (error) {
       setDirty(true);
-      api.log?.(`[error] Mise à jour Fichier contenu impossible: ${error.message}`);
+      api.log?.(`[error] File content update failed: ${error.message}`);
     }
   };
 

@@ -46,11 +46,11 @@ def main() -> None:
         }
         rendered = surface_payload(server, model, node, "inspector_panel")
         html = str(rendered.get("html") or "")
-        expect("data-file-inspector-root" in html, "Le HTML inspecteur file_content doit venir du bloc.")
-        expect("data-file-path" in html, "Le panneau inspecteur file_content doit contenir le champ chemin.")
-        expect("data-file-apply" in html, "Le panneau inspecteur file_content doit exposer le bouton Appliquer.")
-        expect("data-path-browser" in html, "Le panneau inspecteur file_content doit utiliser le path browser commun.")
-        expect("data-path-browser-panel" in html, "Le panneau inspecteur file_content doit exposer le navigateur fichier owned par le bloc.")
+        expect("data-file-inspector-root" in html, "The file_content inspector HTML must come from the block.")
+        expect("data-file-path" in html, "The file_content inspector panel must contain the path field.")
+        expect("data-file-apply" in html, "The file_content inspector panel must expose the Apply button.")
+        expect("data-path-browser" in html, "The file_content inspector panel must use the shared path browser.")
+        expect("data-path-browser-panel" in html, "The file_content inspector panel must expose the block-owned file browser.")
         expect("exports/source.json" in html, "The file_content inspector panel must read node.config.path.")
         expect("checked" in html, "The file_content inspector panel must read node.config.create_if_missing.")
         expect("The block reads the file as text" in html, "The file_content inspector panel must show its hint.")
@@ -61,18 +61,18 @@ def main() -> None:
                 body = response.read().decode("utf-8")
             expect("file" in body.lower(), f"Asset inspecteur file_content non servi: {asset_path}")
             if asset_path.endswith(".js"):
-                expect("export function mount" in body, "Le JS file_content doit monter aussi le modal block-owned.")
+                expect("export function mount" in body, "The file_content JS must also mount the block-owned modal.")
 
         modal = surface_payload(server, model, node, "modal")
         modal_html = str(modal.get("html") or "")
-        expect("data-file-modal-root" in modal_html, "Le modal file_content doit venir du bloc.")
-        expect("data-block-title-field" in modal_html, "Le modal file_content doit conserver le champ titre générique.")
-        expect("data-file-path" in modal_html, "Le modal file_content doit exposer le même champ chemin que l'inspector.")
-        expect("data-path-browser" in modal_html, "Le modal file_content doit utiliser le path browser commun.")
-        expect("data-path-browser-panel" in modal_html, "Le modal file_content doit exposer le navigateur fichier.")
-        expect("data-file-apply" in modal_html, "Le modal file_content doit exposer un bouton Appliquer fichier.")
-        expect("exports/source.json" in modal_html, "Le modal file_content doit lire node.config.path.")
-        expect("data-block-config-field=\"encoding\"" in modal_html, "Le modal file_content doit conserver les attributs techniques.")
+        expect("data-file-modal-root" in modal_html, "The file_content modal must come from the block.")
+        expect("data-block-title-field" in modal_html, "The file_content modal must keep the generic title field.")
+        expect("data-file-path" in modal_html, "The file_content modal must expose the same path field as the inspector.")
+        expect("data-path-browser" in modal_html, "The file_content modal must use the shared path browser.")
+        expect("data-path-browser-panel" in modal_html, "The file_content modal must expose the file browser.")
+        expect("data-file-apply" in modal_html, "The file_content modal must expose a file Apply button.")
+        expect("exports/source.json" in modal_html, "The file_content modal must read node.config.path.")
+        expect("data-block-config-field=\"encoding\"" in modal_html, "The file_content modal must keep the technical attributes.")
         modal_assets = modal.get("assets") or []
 
         source = server.root_dir / "exports" / "source.json"
@@ -82,15 +82,15 @@ def main() -> None:
         entries = browser.get("entries") or []
         expect(
             any(entry.get("name") == "source.json" for entry in entries),
-            "Le navigateur fichier file_content doit etre servi par /api/blocks/file_content/browse-files.",
+            "The file_content file browser must be served by /api/blocks/file_content/browse-files.",
         )
 
         card = surface_payload(server, model, node, "node_card")
         card_html = str(card.get("html") or "")
-        expect("data-file-content-node-card" in card_html, "La carte file_content doit venir du bloc.")
-        expect("source.json" in card_html, "La carte file_content doit afficher uniquement le nom du fichier.")
-        expect(">exports/source.json<" not in card_html, "La carte file_content ne doit pas afficher le chemin complet.")
-        expect('title="exports/source.json"' in card_html, "La carte file_content doit conserver le chemin complet en tooltip.")
+        expect("data-file-content-node-card" in card_html, "The file_content card must come from the block.")
+        expect("source.json" in card_html, "The file_content card must show only the file name.")
+        expect(">exports/source.json<" not in card_html, "The file_content card must not show the full path.")
+        expect('title="exports/source.json"' in card_html, "The file_content card must keep the full path as a tooltip.")
 
         applied = http_json(
             server.base_url,

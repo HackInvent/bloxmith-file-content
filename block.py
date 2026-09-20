@@ -132,11 +132,11 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
             content = target_path.read_text(encoding=encoding)
         except UnicodeDecodeError as exc:
             raise FileBlockError(
-                f"Le fichier '{metadata.get('path')}' n'is not readable as text with the 'encodage {encoding}."
+                f"The file '{metadata.get('path')}' is not readable as text with the {encoding} encoding."
             ) from exc
 
         if "\x00" in content:
-            raise FileBlockError(f"Le fichier '{metadata.get('path')}' semble binaire.")
+            raise FileBlockError(f"The file '{metadata.get('path')}' looks binary.")
 
         return {
             **metadata,
@@ -180,9 +180,9 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
         return BlockRuntimeResult(
             status="success",
             outputs=outputs,
-            logs=[f"{prefix} {context.node_id} -> {len(content)} caractere(s) depuis {display_path}"],
+            logs=[f"{prefix} {context.node_id} -> {len(content)} character(s) from {display_path}"],
             last_message=content,
             content_type=content_type,
-            worker_received=f"{display_path} ({len(content)} caracteres)",
+            worker_received=f"{display_path} ({len(content)} characters)",
             metadata={"file": {key: value for key, value in metadata.items() if key != "content"}},
         )
