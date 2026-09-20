@@ -132,7 +132,7 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
             content = target_path.read_text(encoding=encoding)
         except UnicodeDecodeError as exc:
             raise FileBlockError(
-                f"Le fichier '{metadata.get('path')}' n'est pas lisible en texte avec l'encodage {encoding}."
+                f"Le fichier '{metadata.get('path')}' n'is not readable as text with the 'encodage {encoding}."
             ) from exc
 
         if "\x00" in content:

@@ -5,12 +5,12 @@
       <h2 id="{{ node_id }}BlockModalTitle">{{ node_title }}</h2>
     </div>
     <div class="modal-actions">
-      <button class="ghost-btn" data-close-block-modal type="button">Fermer</button>
+      <button class="ghost-btn" data-close-block-modal type="button">Close</button>
     </div>
   </div>
   <div class="block-config-modal-body">
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Identité</span></div>
+      <div class="ports-editor-header"><span class="group-label">Identity</span></div>
       {{ title_field_html }}
     </section>
     <section class="ports-editor-section">
@@ -18,10 +18,10 @@
       {{ path_browser_html }}
       <label class="checkbox-field">
         <input data-file-create-if-missing type="checkbox" {{ checked }} />
-        <span>Créer le fichier s'il n'existe pas</span>
+        <span>Create the file if it does not exist</span>
       </label>
       <div class="inspector-actions">
-        <button class="solid-btn" data-file-apply type="button" disabled>Appliquer le fichier</button>
+        <button class="solid-btn" data-file-apply type="button" disabled>Apply the file</button>
       </div>
       <p class="inspector-copy">{{ hint }}</p>
     </section>
@@ -34,7 +34,7 @@
       {{ ports_html }}
     </section>
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Dernier état</span></div>
+      <div class="ports-editor-header"><span class="group-label">Last state</span></div>
       {{ runtime_html }}
     </section>
   </div>

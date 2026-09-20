@@ -31,7 +31,7 @@ from block_test_packages import install_test_package, release_key, surface_paylo
 
 def main() -> None:
     with isolated_server() as server:
-        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        # Surfaces are release assets: a bundled kind serves none of them.
         model = install_test_package(server, "file_content")
         key = quote(release_key(model), safe="")
         served = lambda payload, suffix: next(
@@ -105,9 +105,9 @@ def main() -> None:
         file_patch = applied.get("node_patch", {}).get("config")
         expect(
             file_patch == {"path": "exports/updated.json", "create_if_missing": False},
-            "La mise à jour file_content doit renvoyer le patch file attendu.",
+            "The file_content update must return the expected file patch.",
         )
-        expect(applied.get("rerender_inspector") is False, "La saisie file_content ne doit pas forcer un rerender.")
+        expect(applied.get("rerender_inspector") is False, "Typing in file_content must not force a rerender.")
 
         modal_applied = http_json(
             server.base_url,
@@ -122,7 +122,7 @@ def main() -> None:
         modal_file_patch = modal_applied.get("node_patch", {}).get("config")
         expect(
             modal_file_patch == {"path": "exports/modal.json", "create_if_missing": True},
-            "La mise à jour modale file_content doit renvoyer le patch file attendu.",
+            "The file_content modal update must return the expected file patch.",
         )
 
         modal_fields = http_json(
@@ -137,7 +137,7 @@ def main() -> None:
         )
         expect(
             modal_fields.get("node_patch", {}).get("config") == {"encoding": "latin-1"},
-            "Le modal file_content doit conserver les bindings génériques des attributs techniques.",
+            "The file_content modal must keep the generic bindings of its technical attributes.",
         )
     print("[ok] F8.09_file_content_block_inspector_panel_api")
 
