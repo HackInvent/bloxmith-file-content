@@ -51,9 +51,9 @@ def main() -> None:
         expect("data-file-apply" in html, "Le panneau inspecteur file_content doit exposer le bouton Appliquer.")
         expect("data-path-browser" in html, "Le panneau inspecteur file_content doit utiliser le path browser commun.")
         expect("data-path-browser-panel" in html, "Le panneau inspecteur file_content doit exposer le navigateur fichier owned par le bloc.")
-        expect("exports/source.json" in html, "Le panneau inspecteur file_content doit lire node.config.path.")
-        expect("checked" in html, "Le panneau inspecteur file_content doit lire node.config.create_if_missing.")
-        expect("Le bloc lit le fichier comme du texte" in html, "Le panneau inspecteur file_content doit afficher son hint.")
+        expect("exports/source.json" in html, "The file_content inspector panel must read node.config.path.")
+        expect("checked" in html, "The file_content inspector panel must read node.config.create_if_missing.")
+        expect("The block reads the file as text" in html, "The file_content inspector panel must show its hint.")
         assets = rendered.get("assets") or []
 
         for asset_path in ("assets/css/inspector_panel.css", "assets/js/inspector_panel.js"):

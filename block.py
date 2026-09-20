@@ -63,8 +63,8 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
     def _ui_hint(self) -> str:
         """Provide internal FileContentBlock behavior for `_ui_hint`."""
         return (
-            "Le bloc lit le fichier comme du texte et émet son contenu complet sur la sortie. "
-            "Si l'option est cochée, un fichier manquant est créé vide."
+            "The block reads the file as text and emits its full content on the output. "
+            "When the option is checked, a missing file is created empty."
         )
 
     def render_modal(self, *, node: dict[str, Any], payload: dict[str, Any] | None = None) -> dict[str, Any]:
