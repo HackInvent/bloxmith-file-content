@@ -45,7 +45,7 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
 
         config = self._ui_file_config(node)
         raw_config = node.get("config") if isinstance(node.get("config"), dict) else {}
-        path = str(config.get("path") or "Aucun chemin")
+        path = str(config.get("path") or self.translate("block.file_content.no_path", fallback="No path"))
         display_name = self._file_display_name(path)
         encoding = str(raw_config.get("encoding") or "utf-8")
         return render_node_card_template(
@@ -62,9 +62,10 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
 
     def _ui_hint(self) -> str:
         """Provide internal FileContentBlock behavior for `_ui_hint`."""
-        return (
-            "The block reads the file as text and emits its full content on the output. "
-            "When the option is checked, a missing file is created empty."
+        return self.translate(
+            "block.file_content.hint",
+            fallback=("The block reads the file as text and emits its full content on the output. "
+                      "When the option is checked, a missing file is created empty."),
         )
 
     def render_modal(self, *, node: dict[str, Any], payload: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -124,19 +125,28 @@ class FileContentBlock(FilePathBlockMixin, BlockDefinition):
         """
         metadata = self.resolve(root_dir=root_dir, config=config)
         if not metadata.get("exists"):
-            raise FileBlockError(f"Fichier introuvable: {metadata.get('path') or metadata.get('absolute_path')}")
+            missing = str(metadata.get("path") or metadata.get("absolute_path") or "")
+            raise FileBlockError(self.translate(
+                "block.file_content.error_not_found", {"path": missing},
+                fallback=f"File not found: {missing}",
+            ))
 
         target_path = Path(str(metadata.get("absolute_path") or "")).expanduser()
         encoding = str(config.get("encoding") or "utf-8").strip() or "utf-8"
         try:
             content = target_path.read_text(encoding=encoding)
         except UnicodeDecodeError as exc:
-            raise FileBlockError(
-                f"The file '{metadata.get('path')}' is not readable as text with the {encoding} encoding."
-            ) from exc
+            raise FileBlockError(self.translate(
+                "block.file_content.error_not_text",
+                {"path": str(metadata.get("path") or ""), "encoding": encoding},
+                fallback=f"The file '{metadata.get('path')}' is not readable as text with the {encoding} encoding.",
+            )) from exc
 
         if "\x00" in content:
-            raise FileBlockError(f"The file '{metadata.get('path')}' looks binary.")
+            raise FileBlockError(self.translate(
+                "block.file_content.error_binary", {"path": str(metadata.get("path") or "")},
+                fallback=f"The file '{metadata.get('path')}' looks binary.",
+            ))
 
         return {
             **metadata,

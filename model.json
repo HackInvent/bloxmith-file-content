@@ -5,14 +5,18 @@
     "1.0.9"
   ],
   "tested_with_bloxsmith": "1.0.9",
-  "title": "Fichier Contenu",
+  "title": "File Content",
+  "locales": {
+    "en": "locales/en.json",
+    "fr": "locales/fr.json"
+  },
   "ports": {
     "inputs": [],
     "outputs": [
       {
         "id": 1,
         "name": "contenu",
-        "title": "Contenu",
+        "title": "Content",
         "emits": [
           "message/*",
           "text/plain",

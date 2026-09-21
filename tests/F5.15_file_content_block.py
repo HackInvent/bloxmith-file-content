@@ -71,7 +71,7 @@ def main() -> None:
         try:
             block.execute_runtime(context(root, {"path": "missing.txt", "create_if_missing": False}))
         except FileBlockError as exc:
-            expect("introuvable" in str(exc).lower(), "Missing file error must be explicit.")
+            expect("not found" in str(exc).lower(), "Missing file error must be explicit.")
         else:
             raise AssertionError("Missing file without creation must raise FileBlockError.")
     print("[ok] F5.15_file_content_block")

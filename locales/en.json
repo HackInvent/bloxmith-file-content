@@ -1,0 +1,13 @@
+{
+  "block.file_content.model.title": "File Content",
+  "block.file_content.pill": "File content",
+  "block.file_content.no_path": "No path",
+  "block.file_content.file_section": "File content",
+  "block.file_content.technical_section": "Technical attributes",
+  "block.file_content.create_if_missing_label": "Create the file if it does not exist",
+  "block.file_content.apply_file": "Apply the file",
+  "block.file_content.hint": "The block reads the file as text and emits its full content on the output. When the option is checked, a missing file is created empty.",
+  "block.file_content.error_not_found": "File not found: {path}",
+  "block.file_content.error_not_text": "The file '{path}' is not readable as text with the {encoding} encoding.",
+  "block.file_content.error_binary": "The file '{path}' looks binary."
+}

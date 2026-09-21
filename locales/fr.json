@@ -1,0 +1,13 @@
+{
+  "block.file_content.model.title": "Contenu de fichier",
+  "block.file_content.pill": "Contenu de fichier",
+  "block.file_content.no_path": "Aucun chemin",
+  "block.file_content.file_section": "Contenu du fichier",
+  "block.file_content.technical_section": "Attributs techniques",
+  "block.file_content.create_if_missing_label": "Créer le fichier s'il n'existe pas",
+  "block.file_content.apply_file": "Appliquer le fichier",
+  "block.file_content.hint": "Le bloc lit le fichier comme du texte et émet son contenu complet sur la sortie. Quand l'option est cochée, un fichier absent est créé vide.",
+  "block.file_content.error_not_found": "Fichier introuvable : {path}",
+  "block.file_content.error_not_text": "Le fichier « {path} » n'est pas lisible comme texte avec l'encodage {encoding}.",
+  "block.file_content.error_binary": "Le fichier « {path} » semble binaire."
+}
