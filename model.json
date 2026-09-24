@@ -46,6 +46,14 @@
       {
         "kind": "js",
         "path": "assets/js/inspector_panel.js"
+      },
+      {
+        "kind": "css",
+        "path": "assets/css/properties.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/properties.js"
       }
     ],
     "inspector_panel": [
@@ -56,6 +64,14 @@
       {
         "kind": "js",
         "path": "assets/js/inspector_panel.js"
+      },
+      {
+        "kind": "css",
+        "path": "assets/css/properties.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/properties.js"
       }
     ]
   }

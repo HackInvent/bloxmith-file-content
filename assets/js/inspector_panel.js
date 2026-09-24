@@ -1,3 +1,5 @@
+import { withProperties } from "./properties.js";
+
 /**
  * Role: Mounts the file content block frontend asset.
  * File Name: inspector_panel.js
@@ -82,24 +84,15 @@ function mountFileContentEditor(root, api, { actionName = "inspector_update_file
  * @param {object} api - Generic block UI API exposing block actions.
  * @param {object} context - Optional render context from the block UI host.
  */
-export function mount(root, api, context = {}) {
+function mountOwned(root, api, context = {}) {
+  const modal = root.matches('[data-properties-surface="modal"]');
   mountFileContentEditor(root, api, {
-    actionName: "inspector_update_file",
-    successMessage: "[file-content] Configuration appliquee.",
+    actionName: modal ? "modal_update_file" : "inspector_update_file",
+    successMessage: "[file-content] Configuration applied.",
   });
 }
-registry.file_content = {
-  /**
-   * Mount the File Content modal bindings using the modal update action.
-   *
-   * @param {HTMLElement} root - Mounted File Content modal root.
-   * @param {object} api - Generic block UI API exposing block actions.
-   * @param {object} context - Optional render context from the block UI host.
-   */
-  mount(root, api, context = {}) {
-    mountFileContentEditor(root, api, {
-      actionName: "modal_update_file",
-      successMessage: "[file-content] Configuration modale appliquee.",
-    });
-  },
-};
+
+/** Keep the block behavior and add properties-only accessibility. */
+export function mount(root, ...args) {
+  return withProperties(mountOwned).call(this, root, ...args);
+}
