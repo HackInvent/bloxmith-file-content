@@ -10,9 +10,6 @@ Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence]
 
 [![FILE CONTENT — Reads a file and emits its contents.](media/thumbnail.webp)](media/cover.png)
 
-*Concept illustration. [Artwork and generation prompt](media/README.md).*
-
-
 ## Role
 
 `file_content` is a source block that reads a file and emits its content. It uses the shared file-path helpers exposed by the framework and publishes the file body rather than the path.
